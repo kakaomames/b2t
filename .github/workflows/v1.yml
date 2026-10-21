@@ -20,7 +20,7 @@ jobs:
       - name: start
         run: |
           ls -lhF ./   
-          bash start.sh || ls -lhF ./
+          bash start.sh libmain.so || ls -lhF ./
           
       - name: 💾 成果物をリポジトリにコミット＆プッシュ
         run: |
