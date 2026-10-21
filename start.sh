@@ -11,4 +11,6 @@ tar -x ../armA64.tar.gz
 echo "=================================="
 echo "           building...            "
 echo "=================================="
+cd ..
+
 bash build.sh
