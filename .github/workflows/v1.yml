@@ -18,3 +18,17 @@ jobs:
         run: |
           ls -lhF ./   
           bash start.sh || ls -lhF ./
+          
+      - name: 💾 成果物をリポジトリにコミット＆プッシュ
+        run: |
+          echo "[LOG] [ACTION] Git設定と成果物の格納..."
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          git add .
+          if ! git diff --cached --quiet; then
+            git commit -m "Github Actions push the wav audio (Built from source)"
+            git push
+            echo "[LOG] [SUCCESS] 成果物を戦利品として保存しました！"
+          fi
+          
