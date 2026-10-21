@@ -1,1 +1,1 @@
-python b2t.py
+python b2t.py $1 "$(basename $1).txt" all.json
