@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><link href="insn.css" rel="stylesheet" type="text/css"/><meta content="iform.xsl" name="generator"/><title>MOV (scalar, unpredicated) -- A64</title></head><body><div align="center" class="htmldiff_header"><table><tbody><tr><td class="old">(old) </td><td class="explain">htmldiff from-</td><td class="new">(new) </td></tr></tbody></table></div><table style="margin: 0 auto;"><tr><td><div class="topbar"><a href="index.html">Base Instructions</a></div></td><td><div class="topbar"><a href="fpsimdindex.html">SIMD&amp;FP Instructions</a></div></td><td><div class="topbar"><a href="sveindex.html">SVE Instructions</a></div></td><td><div class="topbar"><a href="mortlachindex.html">SME Instructions</a></div></td><td><div class="topbar"><a href="encodingindex.html">Index by Encoding</a></div></td><td><div class="topbar"><a href="shared_pseudocode.html">Shared Pseudocode</a></div></td><td><div class="topbar"><a href="notice.html">Proprietary Notice</a></div></td></tr></table><hr/><h2 class="instruction-section">MOV (scalar, unpredicated)</h2><p>Move general-purpose register to vector elements (unpredicated)</p>
+      <p class="aml">This instruction unconditionally broadcasts the general-purpose scalar source register into each element of the
+destination vector. This instruction is unpredicated.</p>
+    <p>
+        This is an alias of
+        <a href="dup_z_r.html">DUP (scalar)</a>.
+        This means:
+      </p><ul><li>
+          The encodings in this description are named to match the encodings of
+          <a href="dup_z_r.html">DUP (scalar)</a>.
+        </li><li>The description of <a href="dup_z_r.html">DUP (scalar)</a> gives the operational pseudocode, any <span class="arm-defined-word">constrained unpredictable</span> behavior, and any operational information for this instruction.</li></ul>
+    <h3 class="classheading"><a id="iclass_sve"/>SVE<span style="font-size:smaller;"><br/>(FEAT_SVE || FEAT_SME)
+          </span></h3><p class="desc"/><div class="regdiagram-32"><table class="regdiagram"><thead><tr><td>31</td><td>30</td><td>29</td><td>28</td><td>27</td><td>26</td><td>25</td><td>24</td><td>23</td><td>22</td><td>21</td><td>20</td><td>19</td><td>18</td><td>17</td><td>16</td><td>15</td><td>14</td><td>13</td><td>12</td><td>11</td><td>10</td><td>9</td><td>8</td><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr></thead><tbody><tr class="firstrow"><td class="l">0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td class="r">1</td><td class="lr" colspan="2">size</td><td class="l">1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td class="r">0</td><td class="lr" colspan="5">Rn</td><td class="lr" colspan="5">Zd</td></tr></tbody></table></div><div class="encoding"><h4 class="encoding">
+              Encoding<ins> for the 32-bit variant</ins>
+            </h4><a id="mov_z_r_bhs__dup_z_r_bhs_"/><ins>
+        Applies when
+        </ins><span class="bitdiff"><ins> (size != 11)</ins></span><p class="asm-code">MOV  <a href="#Zd" title="Is the name of the destination scalable vector register, encoded in the &quot;Zd&quot; field.">&lt;Zd></a>.<a href="#T_BHS" title="Is the size specifier, ">&lt;T></a>, <a href="#nSP" title="Is the number [0-30] of the general-purpose source register or the name SP (31), encoded in the &quot;Rn&quot; field."><del>&lt;n|SP></del></a><a href="#WnWSP_option" title="Is the 32-bit name of the source general-purpose register or stack pointer, encoded in the &quot;Rn&quot; field."><ins>&lt;Wn|WSP></ins></a><a href="#R__3" title="Is a width specifier, "><del>&lt;R></del></a></p><p class="equivto">
+      is equivalent to
+    </p>
+          <p class="asm-code"><a href="dup_z_r.html#dup_z_r_bhs_">DUP</a>  <a href="dup_z_r.html#Zd">&lt;Zd></a>.<a href="dup_z_r.html#T_BHS">&lt;T></a>, <a href="dup_z_r.html#nSP"><del>&lt;n|SP></del></a><a href="dup_z_r.html#WnWSP_option"><ins>&lt;Wn|WSP></ins></a><a href="dup_z_r.html#R__3"><del>&lt;R></del></a></p>
+          <p class="equivto">
+          and is always the preferred disassembly.
+        </p>
+        </div><div class="encoding"><h4 class="encoding"><ins>
+              Encoding for the 64-bit variant
+            </ins></h4><a id="mov_z_r_d__dup_z_r_d_"/><ins>
+        Applies when
+        </ins><span class="bitdiff"><ins> (size == 11)</ins></span><p class="asm-code"><ins>MOV  </ins><a href="#Zd" title="Is the name of the destination scalable vector register, encoded in the &quot;Zd&quot; field."><ins>&lt;Zd></ins></a><ins>.D, </ins><a href="#XnSP__2" title="Is the 64-bit name of the source general-purpose register or stack pointer, encoded in the &quot;Rn&quot; field."><ins>&lt;Xn|SP></ins></a></p><p class="equivto"><ins>
+      is equivalent to
+    </ins></p><ins>
+          </ins><p class="asm-code"><a href="dup_z_r.html#dup_z_r_d_"><ins>DUP</ins></a><ins>  </ins><a href="dup_z_r.html#Zd"><ins>&lt;Zd></ins></a><ins>.D, </ins><a href="dup_z_r.html#XnSP__2"><ins>&lt;Xn|SP></ins></a></p><ins>
+          </ins><p class="equivto"><ins>
+          and is always the preferred disassembly.
+        </ins></p><ins>
+        </ins></div>
+  <div class="encoding-notes"/><h3 class="explanations">Assembler Symbols</h3><div class="explanations"><table><col class="asyn-l"/><col class="asyn-r"/><tr><td>&lt;Zd></td><td><a id="Zd"/>
+        
+          <p class="aml">Is the name of the destination scalable vector register, encoded in the "Zd" field.</p>
+        
+      </td></tr></table><table><col class="asyn-l"/><col class="asyn-r"/><tr><td>&lt;T></td><td><a id="T_BHS"/>
+        <p>Is the size specifier, 
+          encoded in
+          <q>size</q>:
+            </p>
+        <table class="valuetable">
+          
+            <thead>
+              <tr>
+                <th class="bitfield">size</th>
+                <th class="symbol">&lt;T></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="bitfield">00</td>
+                <td class="symbol">B</td>
+              </tr>
+              <tr>
+                <td class="bitfield">01</td>
+                <td class="symbol">H</td>
+              </tr>
+              <tr>
+                <td class="bitfield">10</td>
+                <td class="symbol">S</td>
+              </tr>
+            <tr><del>
+                </del><td class="bitfield"><del>11</del></td><del>
+                </del><td class="symbol"><del>D</del></td><del>
+              </del></tr><del>
+            </del></tbody>
+          
+        </table>
+      </td></tr></table><table><col class="asyn-l"/><col class="asyn-r"/><tr><td>&lt;<ins>Wn|WSP</ins><del>R</del>></td><td><a id="WnWSP_option"/>
+        
+          <del>
+        </del><table class="valuetable"><del>
+          
+            </del><thead><del>
+              </del><tr><del>
+                </del><th class="bitfield"><del>size</del></th><del>
+                </del><th class="symbol"><del>&lt;R></del></th><del>
+              </del></tr><del>
+            </del></thead><del>
+            </del><tbody><del>
+              </del><tr><del>
+                </del><td class="bitfield"><del>00</del></td><del>
+                </del><td class="symbol"><del>W</del></td><del>
+              </del></tr><del>
+              </del><tr><del>
+                </del><td class="bitfield"><del>01</del></td><del>
+                </del><td class="symbol"><del>W</del></td><del>
+              </del></tr><del>
+              </del><tr><del>
+                </del><td class="bitfield"><del>10</del></td><del>
+                </del><td class="symbol"><del>W</del></td><del>
+              </del></tr><del>
+              </del><tr><del>
+                </del><td class="bitfield"><del>11</del></td><del>
+                </del><td class="symbol"><del>X</del></td><del>
+              </del></tr><del>
+            </del></tbody><del>
+          
+        </del></table><p class="aml"><ins>Is the 32-bit name of the source general-purpose register or stack pointer, encoded in the "Rn" field.</ins></p><p><del>Is a width specifier, 
+          encoded in
+          </del><q><del>size</del></q><del>:
+            </del></p>
+        
+      </td></tr></table><table><col class="asyn-l"/><col class="asyn-r"/><tr><td>&lt;<ins>Xn</ins><del>n</del>|SP></td><td><a id="XnSP__2"/>
+        
+          <p class="aml">Is the <ins>64-bit</ins><del>number</del> <ins>name</ins><del>[0-30]</del> of the <del>general-purpose </del>source <ins>general-purpose </ins>register or <ins>stack</ins><del>the</del> <ins>pointer,</ins><del>name SP (31),</del> encoded in the "Rn" field.</p>
+        
+      </td></tr></table></div><div class="syntax-notes"/><div class="alias_ps_section"><h3 class="pseudocode">Operation</h3><p>The description of <a href="dup_z_r.html">DUP (scalar)</a> gives the operational pseudocode for this instruction.</p></div><div class="alias_ps_section"><h3 class="pseudocode">Operational Information</h3><p>The description of <a href="dup_z_r.html">DUP (scalar)</a> gives the operational information for this instruction.</p></div><hr/><table style="margin: 0 auto;"><tr><td><div class="topbar"><a href="index.html">Base Instructions</a></div></td><td><div class="topbar"><a href="fpsimdindex.html">SIMD&amp;FP Instructions</a></div></td><td><div class="topbar"><a href="sveindex.html">SVE Instructions</a></div></td><td><div class="topbar"><a href="mortlachindex.html">SME Instructions</a></div></td><td><div class="topbar"><a href="encodingindex.html">Index by Encoding</a></div></td><td><div class="topbar"><a href="shared_pseudocode.html">Shared Pseudocode</a></div></td><td><div class="topbar"><a href="notice.html">Proprietary Notice</a></div></td></tr></table><p class="versions">
+      <ins>2026-09_rel</ins><del>2026-06_diff_tag</del>
+
+      <ins>2026-09-21</ins><del>2026-09-08</del> <ins>14</ins><del>09</del>:<ins>22</ins><del>44</del>:<ins>38</ins><del>01</del>
+    </p><p class="copyconf">
+      Copyright © 2010-2026 Arm Limited or its affiliates. All rights reserved.
+      This document is Non-Confidential.
+    </p><div align="center" class="htmldiff_header"><table><tbody><tr><td class="old">(old) </td><td class="explain">htmldiff from-</td><td class="new">(new) </td></tr></tbody></table></div></body></html>

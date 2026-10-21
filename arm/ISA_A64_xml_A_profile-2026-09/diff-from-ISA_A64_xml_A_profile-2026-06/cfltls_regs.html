@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><link href="insn.css" rel="stylesheet" type="text/css"/><meta content="iform.xsl" name="generator"/><title>CFLTLS (register) -- A64</title></head><body htmldiffstatus="new"><div align="center" class="htmldiff_header"><table><tbody><tr><td class="old">no old file</td><td class="explain">htmldiff from-</td><td class="new">(new) </td></tr></tbody></table></div><table style="margin: 0 auto;"><tr><td><div class="topbar"><a href="index.html">Base Instructions</a></div></td><td><div class="topbar"><a href="fpsimdindex.html">SIMD&amp;FP Instructions</a></div></td><td><div class="topbar"><a href="sveindex.html">SVE Instructions</a></div></td><td><div class="topbar"><a href="mortlachindex.html">SME Instructions</a></div></td><td><div class="topbar"><a href="encodingindex.html">Index by Encoding</a></div></td><td><div class="topbar"><a href="shared_pseudocode.html">Shared Pseudocode</a></div></td><td><div class="topbar"><a href="notice.html">Proprietary Notice</a></div></td></tr></table><hr/><h2 class="instruction-section">CFLTLS (register)</h2><p>Compare registers and fault if lower than or same</p>
+      <p class="aml">This instruction compares the values in two registers, and
+generates a Conditional fault exception if the first value is lower than or the same as the second.
+If an exception is generated, the &lt;reason> operand
+  is copied to <a class="armarm-xref" data-linkend="ESR_ELx" title="Reference to Armv8 ARM section">ESR_ELx</a>.</p>
+      <p class="aml">This instruction does not affect the condition flags.</p>
+    <p>
+        This is a pseudo-instruction of
+        <a href="cflt_regs.html">CFLT&lt;cc> (register)</a>.
+        This means:
+      </p><ul><li>
+          The encodings in this description are named to match the encodings of
+          <a href="cflt_regs.html">CFLT&lt;cc> (register)</a>.
+        </li><li>
+            The assembler syntax is used only for assembly, and is not used on disassembly.
+          </li><li>The description of <a href="cflt_regs.html">CFLT&lt;cc> (register)</a> gives the operational pseudocode, any <span class="arm-defined-word">constrained unpredictable</span> behavior, and any operational information for this instruction.</li></ul>
+    <h3 class="classheading"><a id="iclass_fault"/>Fault<span style="font-size:smaller;"><br/>(FEAT_CFLT)
+          </span></h3><p class="desc"/><div class="regdiagram-32"><table class="regdiagram"><thead><tr><td>31</td><td>30</td><td>29</td><td>28</td><td>27</td><td>26</td><td>25</td><td>24</td><td>23</td><td>22</td><td>21</td><td>20</td><td>19</td><td>18</td><td>17</td><td>16</td><td>15</td><td>14</td><td>13</td><td>12</td><td>11</td><td>10</td><td>9</td><td>8</td><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr></thead><tbody><tr class="firstrow"><td class="lr">sf</td><td class="l">1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td class="r">0</td><td class="l">0</td><td>1</td><td class="r">1</td><td class="lr" colspan="5">Rm</td><td class="l">0</td><td>0</td><td>0</td><td class="r">0</td><td class="lr" colspan="2">imm2</td><td class="l">1</td><td>0</td><td>0</td><td>0</td><td class="r">0</td><td class="lr" colspan="5">Rt</td></tr><tr class="secondrow"><td/><td colspan="7"/><td class="droppedname" colspan="3">cc</td><td colspan="5"/><td colspan="4"/><td colspan="2"/><td colspan="5"/><td colspan="5"/></tr></tbody></table></div><div class="encoding"><h4 class="encoding">
+              Encoding for the 32-bit higher or same variant
+            </h4><a id="CFLTLS_CFLTHS_32_regs"/>
+        Applies when
+        <span class="bitdiff"> (sf == 0)</span><p class="asm-code">CFLTLS  #<a href="#cflt_reason" title="Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the &quot;imm2&quot; field.">&lt;reason></a>, <a href="#WmWSP_option" title="Is the 32-bit name of the general-purpose register or stack pointer to be tested, encoded in the &quot;Rm&quot; field.">&lt;Wm|WSP></a>, <a href="#WtWSP_option__2" title="Is the 32-bit name of the second general-purpose source register or stack pointer, encoded in the &quot;Rt&quot; field.">&lt;Wt|WSP></a></p><p class="equivto">
+      is equivalent to
+    </p>
+          <p class="asm-code"><a href="cflt_regs.html#CFLTHS_32_regs">CFLTHS</a>  #<a href="cflt_regs.html#cflt_reason">&lt;reason></a>, <a href="cflt_regs.html#WtWSP_option">&lt;Wt|WSP></a>, <a href="cflt_regs.html#WmWSP_option__2">&lt;Wm|WSP></a></p>
+          
+        </div><div class="encoding"><h4 class="encoding">
+              Encoding for the 64-bit higher or same variant
+            </h4><a id="CFLTLS_CFLTHS_64_regs"/>
+        Applies when
+        <span class="bitdiff"> (sf == 1)</span><p class="asm-code">CFLTLS  #<a href="#cflt_reason" title="Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the &quot;imm2&quot; field.">&lt;reason></a>, <a href="#XmSP_option__3" title="Is the 64-bit name of the general-purpose register or stack pointer to be tested, encoded in the &quot;Rm&quot; field.">&lt;Xm|SP></a>, <a href="#XtSP_option__2" title="Is the 64-bit name of the second general-purpose source register or stack pointer, encoded in the &quot;Rt&quot; field.">&lt;Xt|SP></a></p><p class="equivto">
+      is equivalent to
+    </p>
+          <p class="asm-code"><a href="cflt_regs.html#CFLTHS_64_regs">CFLTHS</a>  #<a href="cflt_regs.html#cflt_reason">&lt;reason></a>, <a href="cflt_regs.html#XtSP_option__3">&lt;Xt|SP></a>, <a href="cflt_regs.html#XmSP_option__2">&lt;Xm|SP></a></p>
+          
+        </div>
+  <div class="encoding-notes"/><h3 class="explanations">Assembler Symbols</h3><div class="explanations"><table><col class="asyn-l"/><col class="asyn-r"/><tr><td>&lt;reason></td><td><a id="cflt_reason"/>
+        
+          <p class="aml">Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the "imm2" field.</p>
+        
+      </td></tr></table><table><col class="asyn-l"/><col class="asyn-r"/><tr><td>&lt;Wm|WSP></td><td><a id="WmWSP_option"/>
+        
+          <p class="aml">Is the 32-bit name of the general-purpose register or stack pointer to be tested, encoded in the "Rm" field.</p>
+        
+      </td></tr></table><table><col class="asyn-l"/><col class="asyn-r"/><tr><td>&lt;Wt|WSP></td><td><a id="WtWSP_option__2"/>
+        
+          <p class="aml">Is the 32-bit name of the second general-purpose source register or stack pointer, encoded in the "Rt" field.</p>
+        
+      </td></tr></table><table><col class="asyn-l"/><col class="asyn-r"/><tr><td>&lt;Xm|SP></td><td><a id="XmSP_option__3"/>
+        
+          <p class="aml">Is the 64-bit name of the general-purpose register or stack pointer to be tested, encoded in the "Rm" field.</p>
+        
+      </td></tr></table><table><col class="asyn-l"/><col class="asyn-r"/><tr><td>&lt;Xt|SP></td><td><a id="XtSP_option__2"/>
+        
+          <p class="aml">Is the 64-bit name of the second general-purpose source register or stack pointer, encoded in the "Rt" field.</p>
+        
+      </td></tr></table></div><div class="syntax-notes"/><div class="alias_ps_section"><h3 class="pseudocode">Operation</h3><p>The description of <a href="cflt_regs.html">CFLT&lt;cc> (register)</a> gives the operational pseudocode for this instruction.</p></div><hr/><table style="margin: 0 auto;"><tr><td><div class="topbar"><a href="index.html">Base Instructions</a></div></td><td><div class="topbar"><a href="fpsimdindex.html">SIMD&amp;FP Instructions</a></div></td><td><div class="topbar"><a href="sveindex.html">SVE Instructions</a></div></td><td><div class="topbar"><a href="mortlachindex.html">SME Instructions</a></div></td><td><div class="topbar"><a href="encodingindex.html">Index by Encoding</a></div></td><td><div class="topbar"><a href="shared_pseudocode.html">Shared Pseudocode</a></div></td><td><div class="topbar"><a href="notice.html">Proprietary Notice</a></div></td></tr></table><p class="versions">
+      2026-09_rel
+
+      2026-09-21 14:22:38
+    </p><p class="copyconf">
+      Copyright © 2010-2026 Arm Limited or its affiliates. All rights reserved.
+      This document is Non-Confidential.
+    </p><div align="center" class="htmldiff_header"><table><tbody><tr><td class="old">no old file</td><td class="explain">htmldiff from-</td><td class="new">(new) </td></tr></tbody></table></div></body></html>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="insn.css"/><meta name="generator" content="iform.xsl"/><title>DMB -- A64</title></head><body><table style="margin: 0 auto;"><tr><td><div class="topbar"><a href="index.html">Base Instructions</a></div></td><td><div class="topbar"><a href="fpsimdindex.html">SIMD&amp;FP Instructions</a></div></td><td><div class="topbar"><a href="sveindex.html">SVE Instructions</a></div></td><td><div class="topbar"><a href="mortlachindex.html">SME Instructions</a></div></td><td><div class="topbar"><a href="encodingindex.html">Index by Encoding</a></div></td><td><div class="topbar"><a href="shared_pseudocode.html">Shared Pseudocode</a></div></td><td><div class="topbar"><a href="notice.html">Proprietary Notice</a></div></td></tr></table><hr/><h2 class="instruction-section">DMB</h2><p>Data memory barrier</p>
+      <p class="aml">This instruction is a memory barrier that ensures the ordering
+of observations of memory accesses, see <a class="armarm-xref" title="Reference to Armv8 ARM section" data-linkend="BEIIECBH">Data Memory Barrier</a>.</p>
+    
+    <p class="desc"/><div class="regdiagram-32"><table class="regdiagram"><thead><tr><td>31</td><td>30</td><td>29</td><td>28</td><td>27</td><td>26</td><td>25</td><td>24</td><td>23</td><td>22</td><td>21</td><td>20</td><td>19</td><td>18</td><td>17</td><td>16</td><td>15</td><td>14</td><td>13</td><td>12</td><td>11</td><td>10</td><td>9</td><td>8</td><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr></thead><tbody><tr class="firstrow"><td class="l">1</td><td>1</td><td class="r">0</td><td class="l">1</td><td>0</td><td class="r">1</td><td class="l">0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td class="r">1</td><td colspan="4" class="lr">CRm</td><td class="lr">1</td><td class="l">0</td><td class="r">1</td><td class="l">1</td><td>1</td><td>1</td><td>1</td><td class="r">1</td></tr><tr class="secondrow"><td colspan="3"/><td colspan="3"/><td colspan="14"/><td colspan="4"/><td/><td colspan="2" class="droppedname">opc</td><td colspan="5" class="droppedname">Rt</td></tr></tbody></table></div><div class="encoding"><h4 class="encoding">Encoding</h4><a id="DMB_BO_barriers"/><p class="asm-code">DMB  (<a href="#CRm_option__3" title="Specifies the limitation on the Memory Effects ordered by the barrier operation, and is encoded in &quot;CRm&quot;.  For more information on whether a Memory Effect is before or after a barrier instruction, see x[Data Memory Barrier (DMB)](BEIIECBH).">&lt;option&gt;</a>|#<a href="#option__2" title="Is a 4-bit unsigned immediate, in the range 0 to 15, encoded in the &quot;CRm&quot; field.">&lt;imm&gt;</a>)</p></div><h4>Decode for this encoding</h4><p class="pseudocode">var types : <a href="shared_pseudocode.html#type_MBReqTypes" title="">MBReqTypes</a>;
+case CRm[1:0] of
+    when '00' =&gt; types = <a href="shared_pseudocode.html#enum_MBReqTypes_All" title="">MBReqTypes_All</a>;
+    when '01' =&gt; types = <a href="shared_pseudocode.html#enum_MBReqTypes_Reads" title="">MBReqTypes_Reads</a>;
+    when '10' =&gt; types = <a href="shared_pseudocode.html#enum_MBReqTypes_Writes" title="">MBReqTypes_Writes</a>;
+    when '11' =&gt; types = <a href="shared_pseudocode.html#enum_MBReqTypes_All" title="">MBReqTypes_All</a>;
+end;</p>
+  <div class="encoding-notes"/><h3 class="explanations">Assembler Symbols</h3><div class="explanations"><table><col class="asyn-l"/><col class="asyn-r"/><tr><td>&lt;option&gt;</td><td><a id="CRm_option__3"/>
+        
+          <p class="aml">Specifies the limitation on the Memory Effects ordered by the barrier operation, and is encoded in "CRm".</p>
+          <p class="aml">For more information on whether a Memory Effect is before or after a barrier instruction,
+see <a class="armarm-xref" title="Reference to Armv8 ARM section" data-linkend="BEIIECBH">Data Memory Barrier (DMB)</a>.</p>
+        
+        <table class="valuetable">
+          
+            <thead>
+              <tr>
+                <th class="bitfield">CRm</th>
+                <th class="symbol">&lt;option&gt;</th>
+                <th class="symbol">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="bitfield">xx00</td>
+                <td class="symbol">RESERVED</td>
+                <td class="description"/>
+              </tr>
+              <tr>
+                <td class="bitfield">0001</td>
+                <td class="symbol">OSHLD</td>
+                <td class="description">
+                  <p class="aml">This option has the same behavior as LD and is deprecated.</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="bitfield">0010</td>
+                <td class="symbol">OSHST</td>
+                <td class="description">
+                  <p class="aml">This option has the same behavior as ST and is deprecated.</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="bitfield">0011</td>
+                <td class="symbol">OSH</td>
+                <td class="description">
+                  <p class="aml">This option has the same behavior as SY and is deprecated.</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="bitfield">0101</td>
+                <td class="symbol">NSHLD</td>
+                <td class="description">
+                  <p class="aml">This option has the same behavior as LD and is deprecated.</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="bitfield">0110</td>
+                <td class="symbol">NSHST</td>
+                <td class="description">
+                  <p class="aml">This option has the same behavior as ST and is deprecated.</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="bitfield">0111</td>
+                <td class="symbol">NSH</td>
+                <td class="description">
+                  <p class="aml">This option has the same behavior as SY and is deprecated.</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="bitfield">1001</td>
+                <td class="symbol">ISHLD</td>
+                <td class="description">
+                  <p class="aml">This option has the same behavior as LD and is deprecated.</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="bitfield">1010</td>
+                <td class="symbol">ISHST</td>
+                <td class="description">
+                  <p class="aml">This option has the same behavior as ST and is deprecated.</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="bitfield">1011</td>
+                <td class="symbol">ISH</td>
+                <td class="description">
+                  <p class="aml">This option has the same behavior as SY and is deprecated.</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="bitfield">1101</td>
+                <td class="symbol">LD</td>
+                <td class="description">
+                  <p class="aml">Reads are the required access type before the barrier instruction.
+Reads and writes are the required access types after the barrier instruction.</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="bitfield">1110</td>
+                <td class="symbol">ST</td>
+                <td class="description">
+                  <p class="aml">Writes are the required access type, both before and after the
+barrier instruction.</p>
+                </td>
+              </tr>
+              <tr>
+                <td class="bitfield">1111</td>
+                <td class="symbol">SY</td>
+                <td class="description">
+                  <p class="aml">Reads and writes are the required access types, both before and
+after the barrier instruction.</p>
+                </td>
+              </tr>
+            </tbody>
+          
+        </table>
+        All encodings of "CRm" that are listed as reserved can be encoded using the #&lt;imm&gt; syntax.
+All reserved options have the same behavior as SY, but software must not rely on this behavior.
+      </td></tr></table><table><col class="asyn-l"/><col class="asyn-r"/><tr><td>&lt;imm&gt;</td><td><a id="option__2"/>
+        
+          <p class="aml">Is a 4-bit unsigned immediate, in the range 0 to 15, encoded in the "CRm" field.</p>
+        
+      </td></tr></table></div><div class="syntax-notes"/>
+    <div class="ps"><a id=""/><h3 class="pseudocode">Operation</h3>
+      <p class="pseudocode">DataMemoryBarrier(types);</p></div>
+  <hr/><table style="margin: 0 auto;"><tr><td><div class="topbar"><a href="index.html">Base Instructions</a></div></td><td><div class="topbar"><a href="fpsimdindex.html">SIMD&amp;FP Instructions</a></div></td><td><div class="topbar"><a href="sveindex.html">SVE Instructions</a></div></td><td><div class="topbar"><a href="mortlachindex.html">SME Instructions</a></div></td><td><div class="topbar"><a href="encodingindex.html">Index by Encoding</a></div></td><td><div class="topbar"><a href="shared_pseudocode.html">Shared Pseudocode</a></div></td><td><div class="topbar"><a href="notice.html">Proprietary Notice</a></div></td></tr></table><p class="versions">
+      2026-09_rel
+
+      2026-09-21 14:22:38
+    </p><p class="copyconf">
+      Copyright © 2010-2026 Arm Limited or its affiliates. All rights reserved.
+      This document is Non-Confidential.
+    </p></body></html>

@@ -1,0 +1,162 @@
+<?xml version="1.0" ?><?xml-stylesheet type="text/xsl" encoding="UTF-8" href="iform.xsl" version="1.0"?><!DOCTYPE instructionsection  PUBLIC '-//ARM//DTD instructionsection //EN'  'iform-p.dtd'><!-- Copyright (c) 2010-2026 Arm Limited or its affiliates. All rights reserved. --><!-- This document is Non-Confidential. This document may only be used and distributed in accordance with the terms of the agreement entered into by Arm and the party that Arm delivered this document to. --><instructionsection id="mov_dup_z_r" title="MOV (scalar, unpredicated) -- A64" type="alias">
+  <docvars>
+    <docvar key="alias_mnemonic" value="MOV"/>
+    <docvar key="instr-class" value="sve"/>
+    <docvar key="isa" value="A64"/>
+    <docvar key="mnemonic" value="DUP"/>
+  </docvars>
+  <heading>MOV (scalar, unpredicated)</heading>
+  <desc>
+    <brief>
+      <para>Move general-purpose register to vector elements (unpredicated)</para>
+    </brief>
+    <authored>
+      <para>This instruction unconditionally broadcasts the general-purpose scalar source register into each element of the
+destination vector. This instruction is unpredicated.</para>
+    </authored>
+    <predicated>False</predicated>
+    <uses_dit condition="FEAT_SVE2 is implemented or FEAT_SME is implemented">True</uses_dit>
+  </desc>
+  <operationalnotes/>
+  <aliasto refiform="dup_z_r.xml" iformid="dup_z_r">DUP (scalar)</aliasto>
+  <classes>
+    <iclass name="SVE" oneof="1" id="iclass_sve" no_encodings="2" isa="A64">
+      <docvars>
+        <docvar key="instr-class" value="sve"/>
+        <docvar key="isa" value="A64"/>
+        <docvar key="mnemonic" value="DUP"/>
+      </docvars>
+      <iclassintro count="2"/>
+      <arch_variants>
+        <arch_variant feature="FEAT_SVE || FEAT_SME" name="(v8Ap2 &amp;&amp; PROFILE_A) || (v9Ap2 &amp;&amp; PROFILE_A)"/>
+      </arch_variants>
+      <regdiagram form="32" psname="A64.sve.sve_perm_unpred_d.sve_int_perm_dup_r.dup_z_r_bhs_.mov_z_r_bhs_">
+        <box hibit="31" width="8" settings="8">
+          <c>0</c>
+          <c>0</c>
+          <c>0</c>
+          <c>0</c>
+          <c>0</c>
+          <c>1</c>
+          <c>0</c>
+          <c>1</c>
+        </box>
+        <box hibit="23" width="2" name="size" usename="1">
+          <c colspan="2"/>
+        </box>
+        <box hibit="21" width="12" settings="12">
+          <c>1</c>
+          <c>0</c>
+          <c>0</c>
+          <c>0</c>
+          <c>0</c>
+          <c>0</c>
+          <c>0</c>
+          <c>0</c>
+          <c>1</c>
+          <c>1</c>
+          <c>1</c>
+          <c>0</c>
+        </box>
+        <box hibit="9" width="5" name="Rn" usename="1">
+          <c colspan="5"/>
+        </box>
+        <box hibit="4" width="5" name="Zd" usename="1">
+          <c colspan="5"/>
+        </box>
+      </regdiagram>
+      <encoding name="mov_z_r_bhs__dup_z_r_bhs_" oneofinclass="2" oneof="2" label="32-bit" bitdiffs="size != 11">
+        <docvars>
+          <docvar key="instr-class" value="sve"/>
+          <docvar key="isa" value="A64"/>
+          <docvar key="mnemonic" value="DUP"/>
+          <docvar key="alias_mnemonic" value="MOV"/>
+        </docvars>
+        <box hibit="23" width="2" name="size">
+          <c>N</c>
+          <c>N</c>
+        </box>
+        <asmtemplate><text>MOV  </text><a hover="Is the name of the destination scalable vector register, encoded in the &quot;Zd&quot; field." link="Zd">&lt;Zd&gt;</a><text>.</text><a hover="Is the size specifier, " link="T_BHS">&lt;T&gt;</a><text>, </text><a hover="Is the 32-bit name of the source general-purpose register or stack pointer, encoded in the &quot;Rn&quot; field." link="WnWSP_option">&lt;Wn|WSP&gt;</a></asmtemplate>
+        <equivalent_to>
+          <asmtemplate><a href="dup_z_r.xml#dup_z_r_bhs_">DUP</a><text>  </text><a hover="Is the name of the destination scalable vector register, encoded in the &quot;Zd&quot; field." href="dup_z_r.xml#Zd">&lt;Zd&gt;</a><text>.</text><a hover="Is the size specifier, " href="dup_z_r.xml#T_BHS">&lt;T&gt;</a><text>, </text><a hover="Is the 32-bit name of the source general-purpose register or stack pointer, encoded in the &quot;Rn&quot; field." href="dup_z_r.xml#WnWSP_option">&lt;Wn|WSP&gt;</a></asmtemplate>
+          <aliascond>Unconditionally</aliascond>
+        </equivalent_to>
+      </encoding>
+      <encoding name="mov_z_r_d__dup_z_r_d_" oneofinclass="2" oneof="2" label="64-bit" bitdiffs="size == 11">
+        <docvars>
+          <docvar key="instr-class" value="sve"/>
+          <docvar key="isa" value="A64"/>
+          <docvar key="mnemonic" value="DUP"/>
+          <docvar key="alias_mnemonic" value="MOV"/>
+        </docvars>
+        <box hibit="23" width="2" name="size">
+          <c>1</c>
+          <c>1</c>
+        </box>
+        <asmtemplate><text>MOV  </text><a hover="Is the name of the destination scalable vector register, encoded in the &quot;Zd&quot; field." link="Zd">&lt;Zd&gt;</a><text>.D, </text><a hover="Is the 64-bit name of the source general-purpose register or stack pointer, encoded in the &quot;Rn&quot; field." link="XnSP__2">&lt;Xn|SP&gt;</a></asmtemplate>
+        <equivalent_to>
+          <asmtemplate><a href="dup_z_r.xml#dup_z_r_d_">DUP</a><text>  </text><a hover="Is the name of the destination scalable vector register, encoded in the &quot;Zd&quot; field." href="dup_z_r.xml#Zd">&lt;Zd&gt;</a><text>.D, </text><a hover="Is the 64-bit name of the source general-purpose register or stack pointer, encoded in the &quot;Rn&quot; field." href="dup_z_r.xml#XnSP__2">&lt;Xn|SP&gt;</a></asmtemplate>
+          <aliascond>Unconditionally</aliascond>
+        </equivalent_to>
+      </encoding>
+    </iclass>
+  </classes>
+  <explanations scope="all">
+    <explanation enclist="mov_z_r_bhs__dup_z_r_bhs_, mov_z_r_d__dup_z_r_d_" symboldefcount="1">
+      <symbol link="Zd">&lt;Zd&gt;</symbol>
+      <account encodedin="Zd">
+        <intro>
+          <para>Is the name of the destination scalable vector register, encoded in the &quot;Zd&quot; field.</para>
+        </intro>
+      </account>
+    </explanation>
+    <explanation enclist="mov_z_r_bhs__dup_z_r_bhs_" symboldefcount="1">
+      <symbol link="T_BHS">&lt;T&gt;</symbol>
+      <definition encodedin="size">
+        <intro>Is the size specifier, </intro>
+        <table class="valuetable">
+          <tgroup cols="2">
+            <thead>
+              <row>
+                <entry class="bitfield">size</entry>
+                <entry class="symbol">&lt;T&gt;</entry>
+              </row>
+            </thead>
+            <tbody>
+              <row>
+                <entry class="bitfield">00</entry>
+                <entry class="symbol">B</entry>
+              </row>
+              <row>
+                <entry class="bitfield">01</entry>
+                <entry class="symbol">H</entry>
+              </row>
+              <row>
+                <entry class="bitfield">10</entry>
+                <entry class="symbol">S</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+      </definition>
+    </explanation>
+    <explanation enclist="mov_z_r_bhs__dup_z_r_bhs_" symboldefcount="1">
+      <symbol link="WnWSP_option">&lt;Wn|WSP&gt;</symbol>
+      <account encodedin="Rn">
+        <intro>
+          <para>Is the 32-bit name of the source general-purpose register or stack pointer, encoded in the &quot;Rn&quot; field.</para>
+        </intro>
+      </account>
+    </explanation>
+    <explanation enclist="mov_z_r_d__dup_z_r_d_" symboldefcount="1">
+      <symbol link="XnSP__2">&lt;Xn|SP&gt;</symbol>
+      <account encodedin="Rn">
+        <intro>
+          <para>Is the 64-bit name of the source general-purpose register or stack pointer, encoded in the &quot;Rn&quot; field.</para>
+        </intro>
+      </account>
+    </explanation>
+  </explanations>
+  <timestamp>2026-09-21 13:57:55</timestamp>
+  <commit_id>2026-09_rel</commit_id>
+</instructionsection>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="insn.css"/><meta name="generator" content="iform.xsl"/><title>TFLTZ -- A64</title></head><body><table style="margin: 0 auto;"><tr><td><div class="topbar"><a href="index.html">Base Instructions</a></div></td><td><div class="topbar"><a href="fpsimdindex.html">SIMD&amp;FP Instructions</a></div></td><td><div class="topbar"><a href="sveindex.html">SVE Instructions</a></div></td><td><div class="topbar"><a href="mortlachindex.html">SME Instructions</a></div></td><td><div class="topbar"><a href="encodingindex.html">Index by Encoding</a></div></td><td><div class="topbar"><a href="shared_pseudocode.html">Shared Pseudocode</a></div></td><td><div class="topbar"><a href="notice.html">Proprietary Notice</a></div></td></tr></table><hr/><h2 class="instruction-section">TFLTZ</h2><p>Test bit and fault if zero</p>
+      <p class="aml">This instruction compares the value of a bit in a
+general-purpose register with zero, and conditionally generates a
+Conditional fault exception if the comparison is equal.
+This instruction does not affect condition flags.</p>
+    
+    <h3 class="classheading"><a id="iclass_fault"/>Fault<span style="font-size:smaller;"><br/>(FEAT_CFLT)
+          </span></h3><p class="desc"/><div class="regdiagram-32"><table class="regdiagram"><thead><tr><td>31</td><td>30</td><td>29</td><td>28</td><td>27</td><td>26</td><td>25</td><td>24</td><td>23</td><td>22</td><td>21</td><td>20</td><td>19</td><td>18</td><td>17</td><td>16</td><td>15</td><td>14</td><td>13</td><td>12</td><td>11</td><td>10</td><td>9</td><td>8</td><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr></thead><tbody><tr class="firstrow"><td class="lr">b5</td><td class="l">1</td><td class="r">1</td><td class="l">1</td><td>0</td><td class="r">1</td><td class="l">1</td><td class="r">0</td><td colspan="5" class="lr">b40</td><td class="l">0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="r">0</td><td colspan="2" class="lr">imm2</td><td class="l">1</td><td>0</td><td>0</td><td class="r">1</td><td class="lr">0</td><td colspan="5" class="lr">Rt</td></tr><tr class="secondrow"><td/><td colspan="2"/><td colspan="3"/><td colspan="2"/><td colspan="5"/><td colspan="7"/><td colspan="2"/><td colspan="4"/><td class="droppedname">op</td><td colspan="5"/></tr></tbody></table></div><div class="encoding"><h4 class="encoding">Encoding</h4><a id="TFLTZ"/><p class="asm-code">TFLTZ  #<a href="#cflt_reason" title="Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the &quot;imm2&quot; field.">&lt;reason&gt;</a>, <a href="#R_option" title="Is a width specifier, ">&lt;R&gt;</a><a href="#Rt_option" title="Is the number [0-30] of the general-purpose register to be tested or the name ZR (31), encoded in the &quot;Rt&quot; field.">&lt;t&gt;</a>, #<a href="#imm_0_63" title="Is the bit number to be tested, in the range 0 to 63, encoded in &quot;b5:b40&quot;.">&lt;imm&gt;</a></p></div><h4>Decode for this encoding</h4><p class="pseudocode">if !IsFeatureImplemented(FEAT_CFLT) then <a href="shared_pseudocode.html#func_EndOfDecode_1" title="">EndOfDecode</a>(<a href="shared_pseudocode.html#enum_Decode_UNDEF" title="">Decode_UNDEF</a>); end;
+
+let datasize : integer{} = 32 &lt;&lt; UInt(b5);
+let t : integer = UInt(Rt);
+let bit_pos : integer = UInt(b5::b40);
+let reason : bits(16) = ZeroExtend{}(imm2);</p>
+  <div class="encoding-notes"/><h3 class="explanations">Assembler Symbols</h3><div class="explanations"><table><col class="asyn-l"/><col class="asyn-r"/><tr><td>&lt;reason&gt;</td><td><a id="cflt_reason"/>
+        
+          <p class="aml">Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the "imm2" field.</p>
+        
+      </td></tr></table><table><col class="asyn-l"/><col class="asyn-r"/><tr><td>&lt;R&gt;</td><td><a id="R_option"/>
+        <p>Is a width specifier, 
+          encoded in
+          <q>b5</q>:
+            </p>
+        <table class="valuetable">
+          
+            <thead>
+              <tr>
+                <th class="bitfield">b5</th>
+                <th class="symbol">&lt;R&gt;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="bitfield">0</td>
+                <td class="symbol">W</td>
+              </tr>
+              <tr>
+                <td class="bitfield">1</td>
+                <td class="symbol">X</td>
+              </tr>
+            </tbody>
+          
+        </table>
+        In assembler source code an 'X' specifier is always permitted, but a 'W' specifier is permitted only when the bit number is less than 32.
+      </td></tr></table><table><col class="asyn-l"/><col class="asyn-r"/><tr><td>&lt;t&gt;</td><td><a id="Rt_option"/>
+        
+          <p class="aml">Is the number [0-30] of the general-purpose register to be tested or the name ZR (31), encoded in the "Rt" field.</p>
+        
+      </td></tr></table><table><col class="asyn-l"/><col class="asyn-r"/><tr><td>&lt;imm&gt;</td><td><a id="imm_0_63"/>
+        
+          <p class="aml">Is the bit number to be tested, in the range 0 to 63, encoded in "b5:b40".</p>
+        
+      </td></tr></table></div><div class="syntax-notes"/>
+    <div class="ps"><a id=""/><h3 class="pseudocode">Operation</h3>
+      <p class="pseudocode"><a href="shared_pseudocode.html#func_CheckCFLTEnabled_0" title="">CheckCFLTEnabled</a>();
+
+let operand : bits(datasize) = X{}(t);
+
+if operand[bit_pos] == '0' then
+    let isflt : boolean = FALSE;
+    AArch64_ConditionalFault(isflt, reason);
+end;</p></div>
+  <hr/><table style="margin: 0 auto;"><tr><td><div class="topbar"><a href="index.html">Base Instructions</a></div></td><td><div class="topbar"><a href="fpsimdindex.html">SIMD&amp;FP Instructions</a></div></td><td><div class="topbar"><a href="sveindex.html">SVE Instructions</a></div></td><td><div class="topbar"><a href="mortlachindex.html">SME Instructions</a></div></td><td><div class="topbar"><a href="encodingindex.html">Index by Encoding</a></div></td><td><div class="topbar"><a href="shared_pseudocode.html">Shared Pseudocode</a></div></td><td><div class="topbar"><a href="notice.html">Proprietary Notice</a></div></td></tr></table><p class="versions">
+      2026-09_rel
+
+      2026-09-21 14:22:38
+    </p><p class="copyconf">
+      Copyright © 2010-2026 Arm Limited or its affiliates. All rights reserved.
+      This document is Non-Confidential.
+    </p></body></html>

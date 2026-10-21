@@ -1,0 +1,14 @@
+{
+    "source": {
+        "repository": "architecture/aarchmrs-db",
+        "resolved_commit": "cc56ae7ae76b51c1d00f3371a5d57555e386069b"
+    },
+    "artifact": {
+        "package_format": "xml",
+        "architecture_version": "v9Ap8",
+        "architecture_profile": "A",
+        "architecture_name": "A_profile",
+        "release_version": "2026-09",
+        "confidentiality": "non_confidential"
+    }
+}

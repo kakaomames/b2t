@@ -1,0 +1,393 @@
+<?xml version="1.0" ?><?xml-stylesheet type="text/xsl" encoding="UTF-8" href="iform.xsl" version="1.0"?><!DOCTYPE instructionsection  PUBLIC '-//ARM//DTD instructionsection //EN'  'iform-p.dtd'><!-- Copyright (c) 2010-2026 Arm Limited or its affiliates. All rights reserved. --><!-- This document is Non-Confidential. This document may only be used and distributed in accordance with the terms of the agreement entered into by Arm and the party that Arm delivered this document to. --><instructionsection id="CFLT_imm" title="CFLT&lt;cc&gt; (immediate) -- A64" type="instruction">
+  <docvars>
+    <docvar key="instr-class" value="general"/>
+    <docvar key="isa" value="A64"/>
+  </docvars>
+  <heading>CFLT&lt;cc&gt; (immediate)</heading>
+  <desc>
+    <brief>
+      <para>Compare register with immediate and fault</para>
+    </brief>
+    <authored>
+      <para>This instruction compares the value in a register with an immediate,
+and generates a Conditional fault exception if the
+comparison is true.
+If an exception is generated, the <syntax>&lt;reason&gt;</syntax> operand
+  is copied to <xref linkend="ESR_ELx">ESR_ELx</xref>.</para>
+      <para>This instruction does not affect the condition flags.</para>
+    </authored>
+  </desc>
+  <alias_list howmany="6">
+    <alias_list_intro>This instruction is used by the aliases </alias_list_intro>
+    <aliasref aliaspageid="CFLTGE_imm" aliasfile="cfltge_imm.xml" hover="Compare signed greater than or equal to immediate and fault" punct=", ">
+      <text>CFLTGE (immediate)</text>
+      <aliaspref>Never</aliaspref>
+    </aliasref>
+    <aliasref aliaspageid="CFLTHS_imm" aliasfile="cflths_imm.xml" hover="Compare unsigned higher than or same as immediate and fault" punct=", ">
+      <text>CFLTHS (immediate)</text>
+      <aliaspref>Never</aliaspref>
+    </aliasref>
+    <aliasref aliaspageid="CFLTLE_imm" aliasfile="cfltle_imm.xml" hover="Compare signed less than or equal to immediate and fault" punct=", ">
+      <text>CFLTLE (immediate)</text>
+      <aliaspref>Never</aliaspref>
+    </aliasref>
+    <aliasref aliaspageid="CFLTLS_imm" aliasfile="cfltls_imm.xml" hover="Compare unsigned lower than or same as immediate and fault" punct=", ">
+      <text>CFLTLS (immediate)</text>
+      <aliaspref>Never</aliaspref>
+    </aliasref>
+    <aliasref aliaspageid="CFLTNZ_imm" aliasfile="cfltnz_imm.xml" hover="Compare and fault on nonzero" punct=" and ">
+      <text>CFLTNZ</text>
+      <aliaspref>Never</aliaspref>
+    </aliasref>
+    <aliasref aliaspageid="CFLTZ_imm" aliasfile="cfltz_imm.xml" hover="Compare and fault on zero" punct=".">
+      <text>CFLTZ</text>
+      <aliaspref>Never</aliaspref>
+    </aliasref>
+    <alias_list_outro>
+      <text>  See </text>
+      <aliastablelink/>
+      <text> below for details of when each alias is preferred.</text>
+    </alias_list_outro>
+  </alias_list>
+  <classes>
+    <iclass name="Fault" oneof="1" id="iclass_fault" no_encodings="12" isa="A64">
+      <docvars>
+        <docvar key="instr-class" value="general"/>
+        <docvar key="isa" value="A64"/>
+      </docvars>
+      <iclassintro count="12"/>
+      <arch_variants>
+        <arch_variant feature="FEAT_CFLT" name="v9Ap8"/>
+      </arch_variants>
+      <regdiagram form="32" psname="A64.control.compfault_imm.CFLTGT_32_imm">
+        <box hibit="31" width="1" name="sf" usename="1">
+          <c colspan="1"/>
+        </box>
+        <box hibit="30" width="7" settings="7">
+          <c>1</c>
+          <c>1</c>
+          <c>1</c>
+          <c>0</c>
+          <c>1</c>
+          <c>1</c>
+          <c>0</c>
+        </box>
+        <box hibit="23" width="3" name="cc" usename="1">
+          <c colspan="3"/>
+        </box>
+        <box hibit="20" width="5" name="imm9h" usename="1">
+          <c colspan="5"/>
+        </box>
+        <box hibit="15" width="4" settings="4">
+          <c>0</c>
+          <c>0</c>
+          <c>0</c>
+          <c>0</c>
+        </box>
+        <box hibit="11" width="2" name="imm2" usename="1">
+          <c colspan="2"/>
+        </box>
+        <box hibit="9" width="1" settings="1">
+          <c>0</c>
+        </box>
+        <box hibit="8" width="4" name="imm9l" usename="1">
+          <c colspan="4"/>
+        </box>
+        <box hibit="4" width="5" name="Rt" usename="1">
+          <c colspan="5"/>
+        </box>
+      </regdiagram>
+      <encoding name="CFLTGT_32_imm" oneofinclass="12" oneof="12" label="32-bit greater than" bitdiffs="sf == 0 &amp;&amp; cc == 000">
+        <docvars>
+          <docvar key="instr-class" value="general"/>
+          <docvar key="isa" value="A64"/>
+          <docvar key="datatype" value="32"/>
+          <docvar key="mnemonic" value="CFLTGT"/>
+        </docvars>
+        <box hibit="31" width="1" name="sf">
+          <c>0</c>
+        </box>
+        <box hibit="23" width="3" name="cc">
+          <c>0</c>
+          <c>0</c>
+          <c>0</c>
+        </box>
+        <asmtemplate><text>CFLTGT  #</text><a hover="Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the &quot;imm2&quot; field." link="cflt_reason">&lt;reason&gt;</a><text>, </text><a hover="Is the 32-bit name of the general-purpose register to be tested, encoded in the &quot;Rt&quot; field." link="WtOrWZR">&lt;Wt&gt;</a><text>, #</text><a hover="For the &quot;32-bit equal&quot;, &quot;32-bit greater than&quot;, &quot;32-bit less than&quot;, &quot;32-bit not equal&quot;, &quot;64-bit equal&quot;, &quot;64-bit greater than&quot;, &quot;64-bit less than&quot;, and &quot;64-bit not equal&quot; variants: is a signed immediate, in the range -256 to 255, encoded in &quot;imm9h:imm9l&quot;." link="simm_cflt">&lt;imm&gt;</a></asmtemplate>
+      </encoding>
+      <encoding name="CFLTLT_32_imm" oneofinclass="12" oneof="12" label="32-bit less than" bitdiffs="sf == 0 &amp;&amp; cc == 001">
+        <docvars>
+          <docvar key="instr-class" value="general"/>
+          <docvar key="isa" value="A64"/>
+          <docvar key="datatype" value="32"/>
+          <docvar key="mnemonic" value="CFLTLT"/>
+        </docvars>
+        <box hibit="31" width="1" name="sf">
+          <c>0</c>
+        </box>
+        <box hibit="23" width="3" name="cc">
+          <c>0</c>
+          <c>0</c>
+          <c>1</c>
+        </box>
+        <asmtemplate><text>CFLTLT  #</text><a hover="Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the &quot;imm2&quot; field." link="cflt_reason">&lt;reason&gt;</a><text>, </text><a hover="Is the 32-bit name of the general-purpose register to be tested, encoded in the &quot;Rt&quot; field." link="WtOrWZR">&lt;Wt&gt;</a><text>, #</text><a hover="For the &quot;32-bit equal&quot;, &quot;32-bit greater than&quot;, &quot;32-bit less than&quot;, &quot;32-bit not equal&quot;, &quot;64-bit equal&quot;, &quot;64-bit greater than&quot;, &quot;64-bit less than&quot;, and &quot;64-bit not equal&quot; variants: is a signed immediate, in the range -256 to 255, encoded in &quot;imm9h:imm9l&quot;." link="simm_cflt">&lt;imm&gt;</a></asmtemplate>
+      </encoding>
+      <encoding name="CFLTHI_32_imm" oneofinclass="12" oneof="12" label="32-bit higher" bitdiffs="sf == 0 &amp;&amp; cc == 010">
+        <docvars>
+          <docvar key="instr-class" value="general"/>
+          <docvar key="isa" value="A64"/>
+          <docvar key="datatype" value="32"/>
+          <docvar key="mnemonic" value="CFLTHI"/>
+        </docvars>
+        <box hibit="31" width="1" name="sf">
+          <c>0</c>
+        </box>
+        <box hibit="23" width="3" name="cc">
+          <c>0</c>
+          <c>1</c>
+          <c>0</c>
+        </box>
+        <asmtemplate><text>CFLTHI  #</text><a hover="Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the &quot;imm2&quot; field." link="cflt_reason">&lt;reason&gt;</a><text>, </text><a hover="Is the 32-bit name of the general-purpose register to be tested, encoded in the &quot;Rt&quot; field." link="WtOrWZR">&lt;Wt&gt;</a><text>, #</text><a hover="For the &quot;32-bit higher&quot;, &quot;32-bit lower&quot;, &quot;64-bit higher&quot;, and &quot;64-bit lower&quot; variants: is an unsigned immediate, in the range 0 to 511, encoded in &quot;imm9h:imm9l&quot;." link="imm_cflt">&lt;imm&gt;</a></asmtemplate>
+      </encoding>
+      <encoding name="CFLTLO_32_imm" oneofinclass="12" oneof="12" label="32-bit lower" bitdiffs="sf == 0 &amp;&amp; cc == 011">
+        <docvars>
+          <docvar key="instr-class" value="general"/>
+          <docvar key="isa" value="A64"/>
+          <docvar key="datatype" value="32"/>
+          <docvar key="mnemonic" value="CFLTLO"/>
+        </docvars>
+        <box hibit="31" width="1" name="sf">
+          <c>0</c>
+        </box>
+        <box hibit="23" width="3" name="cc">
+          <c>0</c>
+          <c>1</c>
+          <c>1</c>
+        </box>
+        <asmtemplate><text>CFLTLO  #</text><a hover="Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the &quot;imm2&quot; field." link="cflt_reason">&lt;reason&gt;</a><text>, </text><a hover="Is the 32-bit name of the general-purpose register to be tested, encoded in the &quot;Rt&quot; field." link="WtOrWZR">&lt;Wt&gt;</a><text>, #</text><a hover="For the &quot;32-bit higher&quot;, &quot;32-bit lower&quot;, &quot;64-bit higher&quot;, and &quot;64-bit lower&quot; variants: is an unsigned immediate, in the range 0 to 511, encoded in &quot;imm9h:imm9l&quot;." link="imm_cflt">&lt;imm&gt;</a></asmtemplate>
+      </encoding>
+      <encoding name="CFLTEQ_32_imm" oneofinclass="12" oneof="12" label="32-bit equal" bitdiffs="sf == 0 &amp;&amp; cc == 100">
+        <docvars>
+          <docvar key="instr-class" value="general"/>
+          <docvar key="isa" value="A64"/>
+          <docvar key="datatype" value="32"/>
+          <docvar key="mnemonic" value="CFLTEQ"/>
+        </docvars>
+        <box hibit="31" width="1" name="sf">
+          <c>0</c>
+        </box>
+        <box hibit="23" width="3" name="cc">
+          <c>1</c>
+          <c>0</c>
+          <c>0</c>
+        </box>
+        <asmtemplate><text>CFLTEQ  #</text><a hover="Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the &quot;imm2&quot; field." link="cflt_reason">&lt;reason&gt;</a><text>, </text><a hover="Is the 32-bit name of the general-purpose register to be tested, encoded in the &quot;Rt&quot; field." link="WtOrWZR">&lt;Wt&gt;</a><text>, #</text><a hover="For the &quot;32-bit equal&quot;, &quot;32-bit greater than&quot;, &quot;32-bit less than&quot;, &quot;32-bit not equal&quot;, &quot;64-bit equal&quot;, &quot;64-bit greater than&quot;, &quot;64-bit less than&quot;, and &quot;64-bit not equal&quot; variants: is a signed immediate, in the range -256 to 255, encoded in &quot;imm9h:imm9l&quot;." link="simm_cflt">&lt;imm&gt;</a></asmtemplate>
+      </encoding>
+      <encoding name="CFLTNE_32_imm" oneofinclass="12" oneof="12" label="32-bit not equal" bitdiffs="sf == 0 &amp;&amp; cc == 101">
+        <docvars>
+          <docvar key="instr-class" value="general"/>
+          <docvar key="isa" value="A64"/>
+          <docvar key="datatype" value="32"/>
+          <docvar key="mnemonic" value="CFLTNE"/>
+        </docvars>
+        <box hibit="31" width="1" name="sf">
+          <c>0</c>
+        </box>
+        <box hibit="23" width="3" name="cc">
+          <c>1</c>
+          <c>0</c>
+          <c>1</c>
+        </box>
+        <asmtemplate><text>CFLTNE  #</text><a hover="Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the &quot;imm2&quot; field." link="cflt_reason">&lt;reason&gt;</a><text>, </text><a hover="Is the 32-bit name of the general-purpose register to be tested, encoded in the &quot;Rt&quot; field." link="WtOrWZR">&lt;Wt&gt;</a><text>, #</text><a hover="For the &quot;32-bit equal&quot;, &quot;32-bit greater than&quot;, &quot;32-bit less than&quot;, &quot;32-bit not equal&quot;, &quot;64-bit equal&quot;, &quot;64-bit greater than&quot;, &quot;64-bit less than&quot;, and &quot;64-bit not equal&quot; variants: is a signed immediate, in the range -256 to 255, encoded in &quot;imm9h:imm9l&quot;." link="simm_cflt">&lt;imm&gt;</a></asmtemplate>
+      </encoding>
+      <encoding name="CFLTGT_64_imm" oneofinclass="12" oneof="12" label="64-bit greater than" bitdiffs="sf == 1 &amp;&amp; cc == 000">
+        <docvars>
+          <docvar key="instr-class" value="general"/>
+          <docvar key="isa" value="A64"/>
+          <docvar key="datatype" value="64"/>
+          <docvar key="mnemonic" value="CFLTGT"/>
+        </docvars>
+        <box hibit="31" width="1" name="sf">
+          <c>1</c>
+        </box>
+        <box hibit="23" width="3" name="cc">
+          <c>0</c>
+          <c>0</c>
+          <c>0</c>
+        </box>
+        <asmtemplate><text>CFLTGT  #</text><a hover="Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the &quot;imm2&quot; field." link="cflt_reason">&lt;reason&gt;</a><text>, </text><a hover="Is the 64-bit name of the general-purpose register to be tested, encoded in the &quot;Rt&quot; field." link="XtOrXZR">&lt;Xt&gt;</a><text>, #</text><a hover="For the &quot;32-bit equal&quot;, &quot;32-bit greater than&quot;, &quot;32-bit less than&quot;, &quot;32-bit not equal&quot;, &quot;64-bit equal&quot;, &quot;64-bit greater than&quot;, &quot;64-bit less than&quot;, and &quot;64-bit not equal&quot; variants: is a signed immediate, in the range -256 to 255, encoded in &quot;imm9h:imm9l&quot;." link="simm_cflt">&lt;imm&gt;</a></asmtemplate>
+      </encoding>
+      <encoding name="CFLTLT_64_imm" oneofinclass="12" oneof="12" label="64-bit less than" bitdiffs="sf == 1 &amp;&amp; cc == 001">
+        <docvars>
+          <docvar key="instr-class" value="general"/>
+          <docvar key="isa" value="A64"/>
+          <docvar key="datatype" value="64"/>
+          <docvar key="mnemonic" value="CFLTLT"/>
+        </docvars>
+        <box hibit="31" width="1" name="sf">
+          <c>1</c>
+        </box>
+        <box hibit="23" width="3" name="cc">
+          <c>0</c>
+          <c>0</c>
+          <c>1</c>
+        </box>
+        <asmtemplate><text>CFLTLT  #</text><a hover="Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the &quot;imm2&quot; field." link="cflt_reason">&lt;reason&gt;</a><text>, </text><a hover="Is the 64-bit name of the general-purpose register to be tested, encoded in the &quot;Rt&quot; field." link="XtOrXZR">&lt;Xt&gt;</a><text>, #</text><a hover="For the &quot;32-bit equal&quot;, &quot;32-bit greater than&quot;, &quot;32-bit less than&quot;, &quot;32-bit not equal&quot;, &quot;64-bit equal&quot;, &quot;64-bit greater than&quot;, &quot;64-bit less than&quot;, and &quot;64-bit not equal&quot; variants: is a signed immediate, in the range -256 to 255, encoded in &quot;imm9h:imm9l&quot;." link="simm_cflt">&lt;imm&gt;</a></asmtemplate>
+      </encoding>
+      <encoding name="CFLTHI_64_imm" oneofinclass="12" oneof="12" label="64-bit higher" bitdiffs="sf == 1 &amp;&amp; cc == 010">
+        <docvars>
+          <docvar key="instr-class" value="general"/>
+          <docvar key="isa" value="A64"/>
+          <docvar key="datatype" value="64"/>
+          <docvar key="mnemonic" value="CFLTHI"/>
+        </docvars>
+        <box hibit="31" width="1" name="sf">
+          <c>1</c>
+        </box>
+        <box hibit="23" width="3" name="cc">
+          <c>0</c>
+          <c>1</c>
+          <c>0</c>
+        </box>
+        <asmtemplate><text>CFLTHI  #</text><a hover="Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the &quot;imm2&quot; field." link="cflt_reason">&lt;reason&gt;</a><text>, </text><a hover="Is the 64-bit name of the general-purpose register to be tested, encoded in the &quot;Rt&quot; field." link="XtOrXZR">&lt;Xt&gt;</a><text>, #</text><a hover="For the &quot;32-bit higher&quot;, &quot;32-bit lower&quot;, &quot;64-bit higher&quot;, and &quot;64-bit lower&quot; variants: is an unsigned immediate, in the range 0 to 511, encoded in &quot;imm9h:imm9l&quot;." link="imm_cflt">&lt;imm&gt;</a></asmtemplate>
+      </encoding>
+      <encoding name="CFLTLO_64_imm" oneofinclass="12" oneof="12" label="64-bit lower" bitdiffs="sf == 1 &amp;&amp; cc == 011">
+        <docvars>
+          <docvar key="instr-class" value="general"/>
+          <docvar key="isa" value="A64"/>
+          <docvar key="datatype" value="64"/>
+          <docvar key="mnemonic" value="CFLTLO"/>
+        </docvars>
+        <box hibit="31" width="1" name="sf">
+          <c>1</c>
+        </box>
+        <box hibit="23" width="3" name="cc">
+          <c>0</c>
+          <c>1</c>
+          <c>1</c>
+        </box>
+        <asmtemplate><text>CFLTLO  #</text><a hover="Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the &quot;imm2&quot; field." link="cflt_reason">&lt;reason&gt;</a><text>, </text><a hover="Is the 64-bit name of the general-purpose register to be tested, encoded in the &quot;Rt&quot; field." link="XtOrXZR">&lt;Xt&gt;</a><text>, #</text><a hover="For the &quot;32-bit higher&quot;, &quot;32-bit lower&quot;, &quot;64-bit higher&quot;, and &quot;64-bit lower&quot; variants: is an unsigned immediate, in the range 0 to 511, encoded in &quot;imm9h:imm9l&quot;." link="imm_cflt">&lt;imm&gt;</a></asmtemplate>
+      </encoding>
+      <encoding name="CFLTEQ_64_imm" oneofinclass="12" oneof="12" label="64-bit equal" bitdiffs="sf == 1 &amp;&amp; cc == 100">
+        <docvars>
+          <docvar key="instr-class" value="general"/>
+          <docvar key="isa" value="A64"/>
+          <docvar key="datatype" value="64"/>
+          <docvar key="mnemonic" value="CFLTEQ"/>
+        </docvars>
+        <box hibit="31" width="1" name="sf">
+          <c>1</c>
+        </box>
+        <box hibit="23" width="3" name="cc">
+          <c>1</c>
+          <c>0</c>
+          <c>0</c>
+        </box>
+        <asmtemplate><text>CFLTEQ  #</text><a hover="Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the &quot;imm2&quot; field." link="cflt_reason">&lt;reason&gt;</a><text>, </text><a hover="Is the 64-bit name of the general-purpose register to be tested, encoded in the &quot;Rt&quot; field." link="XtOrXZR">&lt;Xt&gt;</a><text>, #</text><a hover="For the &quot;32-bit equal&quot;, &quot;32-bit greater than&quot;, &quot;32-bit less than&quot;, &quot;32-bit not equal&quot;, &quot;64-bit equal&quot;, &quot;64-bit greater than&quot;, &quot;64-bit less than&quot;, and &quot;64-bit not equal&quot; variants: is a signed immediate, in the range -256 to 255, encoded in &quot;imm9h:imm9l&quot;." link="simm_cflt">&lt;imm&gt;</a></asmtemplate>
+      </encoding>
+      <encoding name="CFLTNE_64_imm" oneofinclass="12" oneof="12" label="64-bit not equal" bitdiffs="sf == 1 &amp;&amp; cc == 101">
+        <docvars>
+          <docvar key="instr-class" value="general"/>
+          <docvar key="isa" value="A64"/>
+          <docvar key="datatype" value="64"/>
+          <docvar key="mnemonic" value="CFLTNE"/>
+        </docvars>
+        <box hibit="31" width="1" name="sf">
+          <c>1</c>
+        </box>
+        <box hibit="23" width="3" name="cc">
+          <c>1</c>
+          <c>0</c>
+          <c>1</c>
+        </box>
+        <asmtemplate><text>CFLTNE  #</text><a hover="Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the &quot;imm2&quot; field." link="cflt_reason">&lt;reason&gt;</a><text>, </text><a hover="Is the 64-bit name of the general-purpose register to be tested, encoded in the &quot;Rt&quot; field." link="XtOrXZR">&lt;Xt&gt;</a><text>, #</text><a hover="For the &quot;32-bit equal&quot;, &quot;32-bit greater than&quot;, &quot;32-bit less than&quot;, &quot;32-bit not equal&quot;, &quot;64-bit equal&quot;, &quot;64-bit greater than&quot;, &quot;64-bit less than&quot;, and &quot;64-bit not equal&quot; variants: is a signed immediate, in the range -256 to 255, encoded in &quot;imm9h:imm9l&quot;." link="simm_cflt">&lt;imm&gt;</a></asmtemplate>
+      </encoding>
+      <ps_section howmany="1">
+        <ps name="A64.control.compfault_imm.CFLTGT_32_imm" sections="1" secttype="noheading">
+          <pstext mayhavelinks="1" section="Decode" rep_section="decode">if !IsFeatureImplemented(FEAT_CFLT) then <a link="func_EndOfDecode_1" file="shared_pseudocode.xml">EndOfDecode</a>(<a link="enum_Decode_UNDEF" file="shared_pseudocode.xml">Decode_UNDEF</a>); end;
+let datasize : integer{} = 32 &lt;&lt; UInt(sf);
+let t : integer = UInt(Rt);
+let imm : bits(9) = imm9h::imm9l;
+let reason : bits(16) = ZeroExtend{}(imm2);
+
+var cmp : <a link="type_CmpOp" file="shared_pseudocode.xml">CmpOp</a>;
+var unsigned : boolean;
+
+case cc of
+    when '000' =&gt; cmp = <a link="enum_Cmp_GT" file="shared_pseudocode.xml">Cmp_GT</a>; unsigned = FALSE;
+    when '001' =&gt; cmp = <a link="enum_Cmp_LT" file="shared_pseudocode.xml">Cmp_LT</a>; unsigned = FALSE;
+    when '010' =&gt; cmp = <a link="enum_Cmp_GT" file="shared_pseudocode.xml">Cmp_GT</a>; unsigned = TRUE;
+    when '011' =&gt; cmp = <a link="enum_Cmp_LT" file="shared_pseudocode.xml">Cmp_LT</a>; unsigned = TRUE;
+    when '100' =&gt; cmp = <a link="enum_Cmp_EQ" file="shared_pseudocode.xml">Cmp_EQ</a>; unsigned = FALSE;
+    when '101' =&gt; cmp = <a link="enum_Cmp_NE" file="shared_pseudocode.xml">Cmp_NE</a>; unsigned = FALSE;
+    otherwise  =&gt; <a link="func_EndOfDecode_1" file="shared_pseudocode.xml">EndOfDecode</a>(<a link="enum_Decode_UNDEF" file="shared_pseudocode.xml">Decode_UNDEF</a>);
+end;</pstext></ps>
+      </ps_section>
+    </iclass>
+  </classes>
+  <explanations scope="all">
+    <explanation enclist="CFLTGT_32_imm, CFLTLT_32_imm, CFLTHI_32_imm, CFLTLO_32_imm, CFLTEQ_32_imm, CFLTNE_32_imm, CFLTGT_64_imm, CFLTLT_64_imm, CFLTHI_64_imm, CFLTLO_64_imm, CFLTEQ_64_imm, CFLTNE_64_imm" symboldefcount="1">
+      <symbol link="cflt_reason">&lt;reason&gt;</symbol>
+      <account encodedin="imm2">
+        <intro>
+          <para>Is a 2-bit unsigned immediate, in the range 0 to 3, encoded in the &quot;imm2&quot; field.</para>
+        </intro>
+      </account>
+    </explanation>
+    <explanation enclist="CFLTGT_32_imm, CFLTLT_32_imm, CFLTHI_32_imm, CFLTLO_32_imm, CFLTEQ_32_imm, CFLTNE_32_imm" symboldefcount="1">
+      <symbol link="WtOrWZR">&lt;Wt&gt;</symbol>
+      <account encodedin="Rt">
+        <intro>
+          <para>Is the 32-bit name of the general-purpose register to be tested, encoded in the &quot;Rt&quot; field.</para>
+        </intro>
+      </account>
+    </explanation>
+    <explanation enclist="CFLTGT_32_imm, CFLTLT_32_imm, CFLTEQ_32_imm, CFLTNE_32_imm, CFLTGT_64_imm, CFLTLT_64_imm, CFLTEQ_64_imm, CFLTNE_64_imm" symboldefcount="1">
+      <symbol link="simm_cflt">&lt;imm&gt;</symbol>
+      <account encodedin="(imm9h :: imm9l)">
+        <intro>
+          <para>For the &quot;32-bit equal&quot;, &quot;32-bit greater than&quot;, &quot;32-bit less than&quot;, &quot;32-bit not equal&quot;, &quot;64-bit equal&quot;, &quot;64-bit greater than&quot;, &quot;64-bit less than&quot;, and &quot;64-bit not equal&quot; variants: is a signed immediate, in the range -256 to 255, encoded in &quot;imm9h:imm9l&quot;.</para>
+        </intro>
+      </account>
+    </explanation>
+    <explanation enclist="CFLTHI_32_imm, CFLTLO_32_imm, CFLTHI_64_imm, CFLTLO_64_imm" symboldefcount="2">
+      <symbol link="imm_cflt">&lt;imm&gt;</symbol>
+      <account encodedin="(imm9h :: imm9l)">
+        <intro>
+          <para>For the &quot;32-bit higher&quot;, &quot;32-bit lower&quot;, &quot;64-bit higher&quot;, and &quot;64-bit lower&quot; variants: is an unsigned immediate, in the range 0 to 511, encoded in &quot;imm9h:imm9l&quot;.</para>
+        </intro>
+      </account>
+    </explanation>
+    <explanation enclist="CFLTGT_64_imm, CFLTLT_64_imm, CFLTHI_64_imm, CFLTLO_64_imm, CFLTEQ_64_imm, CFLTNE_64_imm" symboldefcount="1">
+      <symbol link="XtOrXZR">&lt;Xt&gt;</symbol>
+      <account encodedin="Rt">
+        <intro>
+          <para>Is the 64-bit name of the general-purpose register to be tested, encoded in the &quot;Rt&quot; field.</para>
+        </intro>
+      </account>
+    </explanation>
+  </explanations>
+  <aliastablehook anchor="aliasconditions">Alias Conditions</aliastablehook>
+  <ps_section howmany="1">
+    <ps name="A64.control.compfault_imm.CFLTGT_32_imm" sections="1" secttype="Operation">
+      <pstext mayhavelinks="1" section="Execute" rep_section="execute"><a link="func_CheckCFLTEnabled_0" file="shared_pseudocode.xml">CheckCFLTEnabled</a>();
+
+let operand1 : bits(datasize) = X{}(t);
+
+var cond : boolean;
+let value1 : integer = if unsigned then UInt(operand1) else SInt(operand1);
+let value2 : integer = if unsigned then UInt(imm) else SInt(imm);
+
+case cmp of
+    when <a link="enum_Cmp_EQ" file="shared_pseudocode.xml">Cmp_EQ</a> =&gt; cond = value1 == value2;
+    when <a link="enum_Cmp_NE" file="shared_pseudocode.xml">Cmp_NE</a> =&gt; cond = value1 != value2;
+    when <a link="enum_Cmp_LT" file="shared_pseudocode.xml">Cmp_LT</a> =&gt; cond = value1 &lt; value2;
+    when <a link="enum_Cmp_GT" file="shared_pseudocode.xml">Cmp_GT</a> =&gt; cond = value1 &gt; value2;
+end;
+if cond then
+    let isflt : boolean = FALSE;
+    AArch64_ConditionalFault(isflt, reason);
+end;</pstext></ps>
+  </ps_section>
+  <timestamp>2026-09-21 13:57:55</timestamp>
+  <commit_id>2026-09_rel</commit_id>
+</instructionsection>

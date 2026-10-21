@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>A64 ISA Data release for A-profile Architecture (2026-09)</title>
+    <style type="text/css">
+      body {
+        font-size: small;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="text-align: center;">
+      <h1 style="text-decoration: underline;">
+        A64 ISA Data release<br/>
+        for A-profile Architecture<br/>
+        (2026-09)
+      </h1>
+      <h1 id="date" style="text-decoration: underline;">30 September 2026</h1>
+    </div>
+    <br/>
+    <h2>Introduction</h2>
+    <p>
+      This is the <span style="font-style: italic;">2026-09</span> release
+      of the A64 ISA Data release for A-profile Architecture.
+    </p>
+    <p>
+      The <a href="ISA_A64_xml_A_profile-2026-09/xhtml/notice.html">Proprietary Notice</a>
+      gives details of the terms and conditions under which this package
+      is provided.
+    </p>
+    <p>
+      If you have comments on the content of this package, create a ticket at <a href="https://support.arm.com/support-cases">https://support.arm.com/support-cases</a>.
+      As part of the ticket, include:
+    </p>
+    <ul>
+      <li>The title, "A64 ISA Data release for A-profile Architecture".</li>
+      <li>The version, "2026-09".</li>
+      <li>The section name to which your comments refer.</li>
+      <li>A concise explanation of your comments.</li>
+    </ul>
+    <h2>Contents</h2>
+    <table style="width: 80%; background-color: rgb(223, 223, 224);" border="1" cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr>
+          <td rowspan="1">This Version</td>
+          <td>2026-09</td>
+          <td>&nbsp;<a href="ISA_A64_xml_A_profile-2026-09/xhtml/index.html">[HTML]</a></td>
+          <td>&nbsp;<a href="ISA_A64_xml_A_profile-2026-09.pdf">[PDF]</a></td>
+          <td>&nbsp;<a href="ISA_A64_xml_A_profile-2026-09/index.xml">[XML]</a></td>
+        </tr>
+        <tr>
+          <td rowspan="1">Change Markups</td>
+          <td>2026-09 from 2026-06<br></td>
+          <td>&nbsp;<a href="ISA_A64_xml_A_profile-2026-09/diff-from-ISA_A64_xml_A_profile-2026-06/index.html">[HTML]</a></td>
+          <td>&nbsp;<a href="ISA_A64_xml_A_profile-2026-09-diff-from-ISA_A64_xml_A_profile-2026-06.pdf">[PDF]</a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Previous Version</td>
+          <td>2026-06</td>
+          <td>&nbsp;<a href="ISA_A64_xml_A_profile-2026-06/xhtml/index.html">[HTML]</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Product Status</h2>
+
+    <p id="product">The content is at Beta quality. Beta quality means that all major features of the specification are described, but some details might be missing.</p>
+
+    <h3>Change history</h3>
+
+    <p>The following changes are made to instruction descriptions:</p>
+    <ul id="change">
+      <li>The order of the funcgroupheader elements in the XML is changed.</li>
+      <li><!--25860--> The assembler syntax for the following SVE instructions is corrected to avoid implying the invalid register spelling XSP:
+      <ul>
+          <li>CPY (scalar)</li>
+          <li>DUP (scalar)</li>
+          <li>MOV (scalar, predicated)</li>
+          <li>MOV (scalar, unpredicated)</li>
+      </ul></li>
+    <li><!--25677--> In BFCLAMP, BFMAX*, BFMIN*, BMAX*, BMIN*, FAMAX, FAMIN, FCLAMP, FMAX*, and FMIN* instructions, NaN propagation rules are specified.</li>
+    <li><!--25675--> The behavior of the AdvSIMD&amp;FP, SVE, and SME forms of FAMIN and FAMAX is corrected to state that they disable alternate floating-point behaviors.</li>
+    <li><!--23597--> The Assembler Symbols tables for the following instructions are corrected to include HS and LO as aliases for CS and CC, respectively:
+    <ul>
+    <li>B.cond</li>
+    <li>BC.cond</li>
+    <li>CCMN (immediate)</li>
+    <li>CCMN (register)</li>
+    <li>CCMP (immediate)</li>
+    <li>CCMP (register)</li>
+    <li>CINC</li>
+    <li>CINV</li>
+    <li>CNEG</li>
+    <li>CSEL</li>
+    <li>CSET</li>
+    <li>CSETM</li>
+    <li>CSINC</li>
+    <li>CSINV</li>
+    <li>CSNEG</li>
+    <li>FCCMP</li>
+    <li>FCCMPE</li>
+    <li>FCSEL</li>
+    </ul></li>
+    <li><!--18958--> The encoding field names are corrected to identify bit[22] as A and bit[15] as R for the following instructions:
+    <ul>
+      <li>CAS, CASA, CASAL, CASL</li>
+      <li>CASB, CASAB, CASALB, CASLB</li>
+      <li>CASH, CASAH, CASALH, CASLH</li>
+      <li>CASP, CASPA, CASPAL, CASPL</li>
+      <li>CASPT, CASPAT, CASPALT, CASPLT</li>
+      <li>CAST, CASAT, CASALT, CASLT</li>
+    </ul>
+    </li>
+    <li><!--25721--> The descriptions for LDAP and LDAPP are updated so that explicit memory effects produced by these instructions always have Acquire semantics.</li>
+    <li><!--24428--> The Assembler Symbols tables for the 16-bit or 64-bit elements variant of PMULLB and PMULLT are corrected to mark size = 10 as RESERVED.</li>
+    </ul>
+
+    <p>The following changes are made to the pseudocode:</p>
+    <ul id="pseudocode">
+      <li><!--L3887--> The IsTVADAccess() and AArch64_S1Translate() pseudocode functions are updated to exclude AccessType_VirtualTag accesses from TCR_ELx.TVAD and TCR2_ELx.TVADy checks without changing architectural behavior.</li>
+      <li><!--25957--> The AArch64_AbortSyndrome() pseudocode is corrected to require ESR_ELx.ISS.ISV to be 0 and ESR_ELx.ISS.PFV to be 1 before reporting the physical fault address as valid.</li>
+      <li><!--25831--> The size parameter passed to translation in the following functions is updated: 
+        <ul>
+        <li> AArch64_DC().</li>
+        <li> AArch64_IC().</li>
+        <li> AArch32_DC().</li>
+        <li> AArch32_IC().</li>
+        <li>AArch64_AT().</li>
+        </ul>
+        </li>
+      <li><!--25815--> AArch64_S1NextWalkStateLeaf() is updated to use  descriptor[9:8] as the source of shareability information when TCR(2)_ELx.POE2F is 1, TCR(2)_ELx.D128 is 0, and FEAT_LPA2 is not implemented.</li>
+      <li><!--25776--> The decode pseudocode for FCMLA (by element) is corrected to check for FEAT_FP16 support when size == '01'.</li>
+      <li><!--25774-->The decode pseudocode for FEAT_F64MM instructions is updated to include an Effective SVE vector length check, generating Decode_UNDEF when MaxImplementedVL() &lt; 256. The affected instructions are:
+      <ul>
+        <li>The 64-bit element variant of FMMLA (non-widening).</li>
+        <li>LD1ROB (scalar plus immediate and scalar plus scalar).</li>
+        <li>LD1ROD (scalar plus immediate and scalar plus scalar).</li>
+        <li>LD1ROH (scalar plus immediate and scalar plus scalar).</li>
+        <li>LD1ROW (scalar plus immediate and scalar plus scalar).</li>
+        <li>The Even (quadwords) and Odd (quadwords) variants of TRN1 and TRN2.</li>
+        <li>The Even (quadwords) and Odd (quadwords) variants of UZP1 and UZP2.</li>
+        <li>The Even (quadwords) and Odd (quadwords) variants of ZIP1 and ZIP2.</li>
+      </ul></li>
+      <li><!--25721--> The decode pseudocode for LDAP and LDAPP is updated so that explicit memory effects produced by these instructions always have Acquire semantics.</li>
+      <li><!--25583--> Pseudocode support for the S1PTW field, indicating a fault during stage 2 translation of a stage 1 translation table walk, in the ISS encodings of PMBSR_ELx and TRBSR_ELx is implemented.</li>
+      <li><!--25355--> Calls to CanAppendToHDBSS() in AArch64_S2DirectBasePermissions() and AArch64_S2CheckPermissions() now check if the access is permitted to update Dirty state.</li>
+      <li><!--25333--> The pseudocode is updated to add the check IsConventionalMemory() for SVE First-fault and Non-fault loads, making suppression of accesses to Device Conventional memory IMPLEMENTATION DEFINED.</li>
+      <li><!--24428--> The decode pseudocode for the 16-bit or 64-bit elements variant of PMULLB and PMULLT is clarified to explicitly identify size = '10' as UNDEFINED.</li>
+      <li><!--23769--> walkparams.pire0 in AArch64.S1TTWParamsEL10() is assigned to Zeros(64) if walkparams.nv1 is 1.</li>
+      <li><!--22427--> The function MemNF() is updated to account for the changes to single-copy atomicity introduced by FEAT_LSE2, including the FEAT_LSE2 SCA granule case in the calculation of atomic.</li>
+      <li><!--20699--> The memory access checks for the following instructions are corrected to mention both Data Abort exceptions and Watchpoint exceptions as per the pseudocode:
+      <ul>
+          <li>STLTXR</li>
+          <li>STLXP</li>
+          <li>STLXR</li>
+          <li>STLXRB</li>
+          <li>STLXRH</li>
+          <li>STTXR</li>
+          <li>STXP</li>
+          <li>STXR</li>
+          <li>STXRB</li>
+          <li>STXRH</li>
+      </ul>
+      </li>
+      <li><!--25398--> Pseudocode for ID_AA64MMFR4_EL1.EIESB-defined exception-entry synchronization behavior, including EL-specific NMEA conditions and the exclusion of SError exceptions from implicit synchronization events, is implemented.</li>
+    </ul>
+
+    <h3>Known issues</h3>
+    <p>All issues identified in the below list will be fixed in a future release.</p>
+    <ul id="known">
+      <li><!--25964--> In the XML, encoding conditions will be removed from the &lt;arch_variants&gt; parameter.</li>
+      <li><!--13919--> The assembler syntax for MRS and MSR instructions with unnamed registers will be clarified.</li>
+      <li><!--25350--> ASL1.0 shorthand slice forms (*: and :len) and elided parameter declarations are being deprecated in favor of more explicit syntax.
+
+        Published pseudocode and related ASL documentation will be updated accordingly. Existing tooling and code using these constructs will be migrated to the equivalent canonical forms (+: slices and explicit parameters).</li>
+      <li><!--22689--> The pseudocode functions NumContextAwareBreakpointsImplemented() and ContextAwareBreakpointRange() will be updated to align with the new definition of the BRPs/CTX_CMPs in the BRPs and CTX_CMPs fields in the ID_AA64DFR0_EL1 and ID_AA64DFR1_EL1 registers.</li>
+      <li><!--22196--> The priority of Input Denormal exceptions when FPCR.AH is 1 is clarified in the description, but is not reflected in the pseudocode. The pseudocode will be updated to include the IMPLEMENTATION DEFINED choice for permitted combinations of floating-point exceptions.</li>
+      <li><!--19752-->CONSTRAINED UNPREDICTABLE update of S2AP[1] for fault on atomic access with DBM[1] and  S2AP[0:1] will be updated to be 0b00 when read permission is not present.</li>
+      <li><!--26092-->The functions AArch64_S1DisabledOutput(), AArch64_S1Enabled(), AArch64_isPARFormatD128(), and AArch64_DC() will be corrected to check the Effective value of HCR_EL2.DC when FEAT_HCRMAC is not implemented.</li>
+    </ul>
+
+    <p>Many simple clarifications and corrections are also present, but are too small to be listed here. Some minor formatting changes are suppressed and not highlighted in the diff output.</p>
+
+    <h3>Upcoming changes</h3>
+    <p>Arm intends to make breaking changes to the JSON schema in the December release. Please contact Arm for information.</p>
+
+    <h3 id="limit">Limitations of Arm pseudocode</h3>
+    <p>The pseudocode statements IMPLEMENTATION_DEFINED, SEE, UNDEFINED, and UNPREDICTABLE indicate behavior that differs from that indicated by the pseudocode being executed. If one of them is encountered:</p>
+    <ul>
+      <li>Earlier behavior indicated by the pseudocode is only specified as occurring to the extent required to determine that the statement is executed.</li>
+      <li>No subsequent behavior indicated by the pseudocode occurs.</li>
+    </ul>
+    <p>For more information, see <span style="font-style: italic;">Special statements</span> in the Arm&reg; Architecture Reference Manual for A-profile architecture (ARM DDI 0487).</p>
+    <p>The pseudocode descriptions have several limitations. These are mainly since, for clarity and brevity, the pseudocode is a sequential and mostly deterministic language.</p>
+    <p>These limitations include:</p>
+    <ul>
+      <li>Pseudocode does not describe the ordering requirements when an instruction generates multiple memory accesses. For a description of the ordering requirements on memory accesses, see <span style="font-style: italic;">Alternative phrasing of the external ordering constraint</span> in the Arm&reg; Architecture Reference Manual for A-profile architecture (ARM DDI 0487).</li>
+      <li>Pseudocode does not describe the exact ordering requirements when a single floating-point instruction generates more than one floating-point exception and one or more of those floating-point exceptions is trapped. <span style="font-style: italic;">Combinations of floating-point exceptions</span> in the Arm&reg; Architecture Reference Manual for A-profile architecture (ARM DDI 0487) describes the exact rules. <br/><b>Note:</b> There is no limitation in the case where all the floating-point exceptions are untrapped, because the pseudocode specifies the same behavior as the referenced section.</li>
+      <li>When the architectural behavior of an instruction could be performed as a concurrent set of operations that are not architecturally ordered, the pseudocode represents it as a sequential set of operations.</li>
+      <li>An exception can be taken during execution of the pseudocode for an instruction, either explicitly as a result of the execution of a pseudocode function such as Abort(), or implicitly, for example if an interrupt is taken during execution of an LDM instruction, load-store pair instructions, SVE vector instructions, Memory copy and memory set instructions etc.. If this happens, the pseudocode does not describe the extent to which the normal behavior of the instruction occurs. To determine that, see the descriptions of the exceptions in <span style="font-style: italic;">Handling exceptions that are taken to an Exception level using AArch32</span> and <span style="font-style: italic;">Definition of a precise exception and imprecise exception</span> in the Arm&reg; Architecture Reference Manual for A-profile architecture (ARM DDI 0487).</li>
+      <li>Pseudocode does not describe the exact rules when an AArch32 instruction that fails its condition code check generates any of the following::
+        <ul>
+          <li>UNDEFINED instruction.</li>
+          <li>Hyp trap.</li>
+          <li>Monitor trap.</li>
+          <li>Trap to AArch64 exception.</li>
+        </ul>
+        In such cases, the UNDEFINED pseudocode statement or call to the applicable trap function lies inside the if ConditionPassed() then ... structure, either directly or in the EncodingSpecificOperations() function call, and so the pseudocode indicates that the instruction executes as a NOP. For the exact rules, see ARM DDI 0487 sections:
+        <ul>
+          <li><span style="font-style: italic;">Conditional execution of undefined instructions</span>.</li>
+          <li><span style="font-style: italic;">EL2 configurable controls</span>.</li>
+          <li><span style="font-style: italic;">EL3 configurable controls</span>.</li>
+          <li><span style="font-style: italic;">Configurable instruction controls</span>.</li>
+        </ul>
+      </li>
+      <li>Where a significant aspect of the behavior is IMPLEMENTATION DEFINED, pseudocode may present only the declarations of the functions - the details of these functions is provided by each implementation of the architecture.</li>
+      <li>Pseudocode does not present the possible observability due to speculative execution.</li>
+      <li>Pseudocode presents various details of the architecture - but does not show how the details can be combined to form a single definition. There are various aspects of such a detail that are also not presented. Notably:
+        <ul>
+          <li>Pseudocode does not show the details of fetching, decoding, and linking to instruction execution.</li>
+          <li>Pseudocode for combining the instruction shared decode, decode, and operation is not shown.</li>
+        </ul>
+      </li>
+      <li>Pseudocode presents all the architectural state as global state. The possible implications of multiple PEs or other components is not shown.</li>
+      <li>The following details are either not shown or have noted limitations in the pseudocode:
+        <ul>
+          <li>Self-hosted trace and external trace.</li>
+          <li>Modeling the System register state or side effects. The accessibility details of a direct or external access such as traps etc are shown.</li>
+          <li>Generation of all architectural and micro-architectural Performance Monitoring Events. <b>Note</b>: Some architectural event generation is shown.</li>
+          <li>Construction of Statistical Profiling Extension records.</li>
+          <li>Statistical Profiling functionality for 2023 features.</li>
+          <li>Behavior of instructions in Debug state when the behavior is UNPREDICTABLE is presented as if the instruction is executed identically to how it is when not in Debug state.</li>
+          <li>Activity Monitor Events and Counters.</li>
+          <li>Generic Interrupt Controller functionality.</li>
+          <li>External memory system.</li>
+          <li>External agents such as a debugger.</li>
+          <li>PE behaviors that would lead to unrecoverable or uncontainable errors.</li>
+          <li>Where the behavior is IMPLEMENTATION DEFINED or CONSTRAINED UNPREDICTABLE, not all possibilities may be shown. Sometimes the pseudocode may present a simplified, but architecturally compatible view. In some situations, the possible behaviors may be outlined in a comment.</li>
+        </ul>
+      </li>
+      <li>The following architectural features are at Alpha quality and are above the limitations described below due to recency and completion of validation:
+        <ul>
+          <li>Halting Debug</li>
+          <li>Statistical Profiling Extension.</li>
+          <li>Performance Monitoring Events.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3 id="quality">Scope and quality statements for all Arm architecture releases</h3>
+    <p>The scope of the <b>Architecture specification releases</b> is to describe changes from the existing architecture to the next release. The quality of the architecture releases refers to the accuracy and completeness of the changes described in the specifications.</p>
+    <p>The scope of the <b>Arm Architecture Reference Manual</b> is to describe the content and behavior of the architecture in its entirety for human readers, providing correct and authoritative information for the current release and all prior releases. This information, at EAC quality, is provided through prose descriptions, supported by feature, register, instruction, and pseudocode content that may have appeared in previous Data preview releases.</p>
+    <p>The scope of the <b>Features, Register, and ISA instruction Data preview releases</b> is to describe the content and behavior of the features, registers, system instructions, ISA instructions, and pseudocode of the architecture in full for human readers in a way that enables correct information for the current or any previous release to be deduced. The quality of these Data releases refers to the accuracy and completeness of the preview content to a human reader.</p>
+    <p>The scope of the <b>JSON releases</b> is to describe aspects of the Data preview releases in a structured, machine-readable format. The architectural content in JSON releases will be approximately equivalent to the corresponding Data preview release. However there are some aspects of the architecture which cannot yet be represented in a machine-readable format.</p>
+    <p>The scope of the <b>Schema</b> for the JSON releases is to describe the structure and constraints of JSON data. The schema is under development and is subject to change.</p>
+
+  </body>
+</html>

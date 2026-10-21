@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><link href="insn.css" rel="stylesheet" type="text/css"/><meta content="iform.xsl" name="generator"/><title>SLBND -- A64</title></head><body htmldiffstatus="new"><div align="center" class="htmldiff_header"><table><tbody><tr><td class="old">no old file</td><td class="explain">htmldiff from-</td><td class="new">(new) </td></tr></tbody></table></div><table style="margin: 0 auto;"><tr><td><div class="topbar"><a href="index.html">Base Instructions</a></div></td><td><div class="topbar"><a href="fpsimdindex.html">SIMD&amp;FP Instructions</a></div></td><td><div class="topbar"><a href="sveindex.html">SVE Instructions</a></div></td><td><div class="topbar"><a href="mortlachindex.html">SME Instructions</a></div></td><td><div class="topbar"><a href="encodingindex.html">Index by Encoding</a></div></td><td><div class="topbar"><a href="shared_pseudocode.html">Shared Pseudocode</a></div></td><td><div class="topbar"><a href="notice.html">Proprietary Notice</a></div></td></tr></table><hr/><h2 class="instruction-section">SLBND</h2><p>Scoped release boundary</p>
+      <p class="aml">This instruction signals to the memory system that a corresponding instruction with Release semantics
+or <span class="asm-code">DMB</span> instruction will subsequently occur in program order, and if that
+corresponding instruction defines a Barrier scope with the <span class="asm-code">SLBND</span> instruction,
+then these instructions do not create a Barrier-ordered-before relationship between any Effect in program
+order before the <span class="asm-code">SLBND</span> instruction and any of the following:</p>
+      <ul>
+        <li>
+          The Effect with Release semantics.
+        </li>
+        <li>
+          Any Effect in program order after the DMB Effect.
+        </li>
+      </ul>
+    
+    <h3 class="classheading"><a id="iclass_system"/>System<span style="font-size:smaller;"><br/>(FEAT_RLCS)
+          </span></h3><p class="desc"/><div class="regdiagram-32"><table class="regdiagram"><thead><tr><td>31</td><td>30</td><td>29</td><td>28</td><td>27</td><td>26</td><td>25</td><td>24</td><td>23</td><td>22</td><td>21</td><td>20</td><td>19</td><td>18</td><td>17</td><td>16</td><td>15</td><td>14</td><td>13</td><td>12</td><td>11</td><td>10</td><td>9</td><td>8</td><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr></thead><tbody><tr class="firstrow"><td class="l">1</td><td>1</td><td class="r">0</td><td class="l">1</td><td>0</td><td class="r">1</td><td class="l">0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td class="r">0</td><td class="l">0</td><td>1</td><td>1</td><td class="r">1</td><td class="l">0</td><td>0</td><td class="r">0</td><td class="l">1</td><td>1</td><td>1</td><td>1</td><td class="r">1</td></tr><tr class="secondrow"><td colspan="3"/><td colspan="3"/><td colspan="14"/><td class="droppedname" colspan="4">CRm</td><td class="droppedname" colspan="3">op2</td><td colspan="5"/></tr></tbody></table></div><div class="encoding"><h4 class="encoding">Encoding</h4><a id="SLBND_HI_hints"/><p class="asm-code">SLBND</p></div><h4>Decode for this encoding</h4><p class="pseudocode">if !IsFeatureImplemented(FEAT_RLCS) then <a href="shared_pseudocode.html#func_EndOfDecode_1" title="">EndOfDecode</a>(<a href="shared_pseudocode.html#enum_Decode_NOP" title="">Decode_NOP</a>); end;</p>
+  <div class="encoding-notes"/>
+    <div class="ps"><a id=""/><h3 class="pseudocode">Operation</h3>
+      <p class="pseudocode">Hint_ScopedReleaseBoundary();</p></div>
+  <hr/><table style="margin: 0 auto;"><tr><td><div class="topbar"><a href="index.html">Base Instructions</a></div></td><td><div class="topbar"><a href="fpsimdindex.html">SIMD&amp;FP Instructions</a></div></td><td><div class="topbar"><a href="sveindex.html">SVE Instructions</a></div></td><td><div class="topbar"><a href="mortlachindex.html">SME Instructions</a></div></td><td><div class="topbar"><a href="encodingindex.html">Index by Encoding</a></div></td><td><div class="topbar"><a href="shared_pseudocode.html">Shared Pseudocode</a></div></td><td><div class="topbar"><a href="notice.html">Proprietary Notice</a></div></td></tr></table><p class="versions">
+      2026-09_rel
+
+      2026-09-21 14:22:38
+    </p><p class="copyconf">
+      Copyright © 2010-2026 Arm Limited or its affiliates. All rights reserved.
+      This document is Non-Confidential.
+    </p><div align="center" class="htmldiff_header"><table><tbody><tr><td class="old">no old file</td><td class="explain">htmldiff from-</td><td class="new">(new) </td></tr></tbody></table></div></body></html>
