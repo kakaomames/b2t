@@ -2,6 +2,9 @@ name: BUild  V1
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   start-server:
     runs-on: ubuntu-latest
