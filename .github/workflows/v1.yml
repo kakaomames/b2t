@@ -1,4 +1,4 @@
-name: BUild  V!
+name: BUild  V1
 on:
   workflow_dispatch:
 
@@ -8,4 +8,5 @@ jobs:
     steps:
       - name: start
         run: |
-          bash start.sh
+          ls -lhF ./   
+          bash start.sh || ls -lhF ./
