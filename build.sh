@@ -1,1 +1,1 @@
-python build.sh ./arm all.json
+python build.py ./arm all.json
