@@ -17,3 +17,4 @@ cd ..
 
 bash build.sh # 中身はpython build.py
 head -20 all.json
+bash b2t.sh
