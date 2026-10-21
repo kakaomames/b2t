@@ -1,0 +1,11 @@
+name: BUild  V!
+on:
+  workflow_dispatch:
+
+jobs:
+  start-server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: start
+        run: |
+          bash start.sh
