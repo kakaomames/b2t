@@ -7,10 +7,10 @@ cd arm
 echo "=================================="
 echo "            Thawing...            "
 echo "=================================="
-tar -x ../armA64.tar.gz
+tar -x ../armA64.tar.gz # 展開
 echo "=================================="
 echo "           building...            "
 echo "=================================="
 cd ..
 
-bash build.sh
+bash build.sh # 中身はpython build.py
