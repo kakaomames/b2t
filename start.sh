@@ -16,6 +16,7 @@ echo "=================================="
 cd ..
 
 bash build.sh # 中身はpython build.py
+pip install capstone flask -y
 head -20 all.json
 python b2s.py $1
 bash b2t.sh "$1_sections/text"
